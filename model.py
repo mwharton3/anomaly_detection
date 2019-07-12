@@ -28,9 +28,8 @@ def CAMCNN(input_size):
     conv5 = Conv2D(512, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv5)
 
 
-    avgpool = AveragePooling2D((32, 32))(conv5)
-    flat = Flatten()(avgpool)
-    output = Dense(2, activation='softmax')(flat)
+    avgpool = GloablAveragePooling2D()(conv5)
+    output = Dense(2, activation='softmax')(avgpool)
 
     model = Model(input=inputs, output=output)
 
